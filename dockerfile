@@ -1,6 +1,8 @@
 FROM ubuntu
 RUN apt-get update 
 RUN apt-get install -y httpd  net-tools curl 
-COPY ./data/* /var/www/html/
+ADD ./data/* /var/www/html/
+RUN cd /var/www/html/ && unzip brighton.zip
+RUN cp /var/www/html/brighton-html/*  /var/www/html/
 ENTRYPOINT apachectl -D FOREGROUND
 EXPOSE 80
